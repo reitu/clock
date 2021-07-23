@@ -7,43 +7,26 @@
 export default {
   data: function () {
     return {
-      time: '33',
-      mins: "",
+      time: "",
     };
   },
   mounted() {
-    // setInterval(this.setTime, 500);
-    // setInterval(this.getTime, 1000);
     setInterval(this.showTime, 1000);
   },
   methods: {
-    // setTime() {
-    //   this.time = Date();
-    // },
-    // getTime() {
-    //   this.mins = this.time.getMinutes();
-    // },
-    // createMin() {
-    //   this.mins = this.time[2]
-    // },
     createTime() {
       var date = new Date();
-      var h = date.getHours(); // 0 - 23
-      var m = date.getMinutes(); // 0 - 59
-      var s = date.getSeconds();
-      var sNew = s.toString()
-      // if (sNew.length<2) {
-      //   console.log('lesss')
-      //   sNew= 0+sNew
-      //   console.log('im snew', sNew)
-      //   s=parseInt(sNew)
-      // }
-      //console.log(sNew)
+      var h = this.formatNum(date.getHours());
+      var m = this.formatNum(date.getMinutes());
+      var s = this.formatNum(date.getSeconds());
       var timestring = h + ":" + m + ":" + s;
       return timestring;
     },
     showTime() {
       this.time = this.createTime();
+    },
+    formatNum(n) {
+      return String(n).padStart(2, "0");
     },
   },
 };
@@ -53,16 +36,20 @@ export default {
 html * {
   font-size: 40px;
   color: grayscale($color: #d4f12f);
-  font-family: Arial !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background: black;
   text-align: center;
   margin-top: 100px;
+  font-size: 72px;
 }
 
 .time-text {
-  color: white;
-  border: inset 4px grey;
-  border-radius: 8px;
-  padding: 24px;
+  color: black;
+  background-color: white;
+  width: 400px;
+  border: 2px inset white;
+  border-radius: 12px;
+  margin: auto;
 }
 </style>
